@@ -1,5 +1,4 @@
 
-
 [![](https://mermaid.ink/img/pako:eNpNUEtOw0AMvYrldZYFpNlVLWIVUVFWKBsrY2AgM44cT0OoeiROwcWYMELCK-v9pPfO2ItndAjwJlkTL12CchZsYNjziQcZIyeDR6ZYue3AH5Q8K9xl-_5iVf50cOPg2GuO0NJkrFV662dSDztR48nBtVsjK9WSvfIMu6JWcXD1j9pqoLTAg0w0rLaNg4OKz73B_Zz-sgGwwcgaKfhS4LyiHZbQyB268nrS9w67dCk6yibHJfXoTDM3mEdPxvtAL0oR3TMNU0HZBxNt6yK_wzQ4UnoSidV4-QGr0GRy?type=png)](https://mermaid-js.github.io/mermaid-live-editor/edit#pako:eNpNUEtOw0AMvYrldZYFpNlVLWIVUVFWKBsrY2AgM44cT0OoeiROwcWYMELCK-v9pPfO2ItndAjwJlkTL12CchZsYNjziQcZIyeDR6ZYue3AH5Q8K9xl-_5iVf50cOPg2GuO0NJkrFV662dSDztR48nBtVsjK9WSvfIMu6JWcXD1j9pqoLTAg0w0rLaNg4OKz73B_Zz-sgGwwcgaKfhS4LyiHZbQyB268nrS9w67dCk6yibHJfXoTDM3mEdPxvtAL0oR3TMNU0HZBxNt6yK_wzQ4UnoSidV4-QGr0GRy)
 
 # Goal
@@ -18,3 +17,11 @@
 	- **Components** individual components.
 		- **Carpet** specific component
 - **theme** Material UI theme
+
+# Install
+> Requisites.
+- NodeJS
+- Yarn
+
+[Get NodeJS from its official page](https://nodejs.org/en/download/)
+[Get Yarn from its official page](https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable)
