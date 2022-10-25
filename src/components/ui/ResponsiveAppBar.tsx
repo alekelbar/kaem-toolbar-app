@@ -13,11 +13,12 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import EventIcon from '@mui/icons-material/Event';
 import { useRouter } from 'next/router';
+import { signOut } from 'next-auth/react';
 
 const pages = ['Asignaturas', 'Pomodoro Timer', 'Matriz de prioridad', 'Evaluaciones'];
 const settings = ['Logout'];
 const actions = {
-  Logout: 'SIGN_OUT',
+  Logout: 'Logout',
   suject: 'Asignaturas',
   pomodoro: 'Pomodoro Timer',
   matrix: 'Matriz de prioridad',
@@ -50,9 +51,11 @@ function ResponsiveAppBar({ image }: ResponsiveAppBarProps) {
   };
 
   const handleActions = (action: string) => {
-    console.log('Seleccionando una accion!', action)
+    console.log(action);
     switch (action) {
       case actions.Logout:
+        signOut();
+        router.push('/login');
         break;
       case actions.evaluaciones:
         router.push('/Evaluations')
@@ -75,7 +78,7 @@ function ResponsiveAppBar({ image }: ResponsiveAppBarProps) {
   }
 
   return (
-    <AppBar position="sticky">
+    <AppBar position="sticky" color='primary'>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <EventIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -90,7 +93,7 @@ function ResponsiveAppBar({ image }: ResponsiveAppBarProps) {
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'inherit',
+              color: 'primary',
               textDecoration: 'none',
             }}
           >
@@ -190,7 +193,7 @@ function ResponsiveAppBar({ image }: ResponsiveAppBarProps) {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={() => { handleActions(actions.Logout) }}>
+                <MenuItem key={setting} onClick={() => { handleActions(setting) }}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}

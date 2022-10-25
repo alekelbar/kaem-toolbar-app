@@ -10,7 +10,7 @@ export const SettingsButton = (props: { handleSettings: () => void }) => {
   return (
     <Stack>
       <Button
-        color='primary'
+        color='info'
         variant='contained'
         onClick={() => handleSettings()}
         size='large'

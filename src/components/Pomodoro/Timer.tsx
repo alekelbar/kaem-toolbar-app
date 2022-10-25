@@ -1,15 +1,20 @@
-import { Box, ButtonGroup, Typography } from '@mui/material';
+import { Box, ButtonGroup, Theme, Typography } from '@mui/material';
 import { useContext, useEffect, useRef, useState } from 'react';
-import { buildStyles, CircularProgressbar, CircularProgressbarWithChildren } from 'react-circular-progressbar';
+import { buildStyles, CircularProgressbarWithChildren } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { ClockContext } from './context/ClockContext';
 import { PauseButton } from './PauseButton';
 import { PlayButton } from './PlayButton';
+import Image from 'next/image'
+import { useTheme } from '@emotion/react';
 
-const red = '#1976d2';
-const green = '#42a5f5';
+
+const red = '#F0FF42';
+const green = '#82CD47';
 
 export const Timer = () => {
+
+  const theme = useTheme()
 
   const clockConfig = useContext(ClockContext);
   const [mode, setMode] = useState('rest')
@@ -74,18 +79,18 @@ export const Timer = () => {
         textAlign={'center'}
         variant='h5'
         padding='10px'
-        color={'secondary'}>{minutes}:{seconds} {mode == 'work' ? 'Trabajando' : 'Descansando'} </Typography>
+        color={'white'}>{minutes}:{seconds}</Typography>
       <CircularProgressbarWithChildren
         value={percentaje}
         // text={`${percentaje}%`}
         styles={buildStyles({
           textColor: '#fff',
-          pathColor: mode === 'work' ? red : green,
+          pathColor: mode === 'work' ? (theme as Theme).palette.secondary.main : (theme as Theme).palette.info.main,
           textSize: '90%',
           trailColor: '#d6d6d6',
         })}
       >
-        <img style={{ width: '30%' }} src="https://i.imgur.com/b9NyUGm.png" alt="doge" />
+        <Image width={100} height={100} style={{ width: '30%' }} src="https://i.imgur.com/b9NyUGm.png" alt="doge" />
         <Box sx={{ fontSize: '2em', color: 'white' }}>
           <Typography variant='h6'>{percentaje}%</Typography>
         </Box>
