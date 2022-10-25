@@ -1,2 +1,2 @@
-export { default as Layout } from './Layout';
-export { default as ResponsiveAppBar } from './ResponsiveAppBar';
+export { default as Layout } from './ui/Layout';
+export { default as ResponsiveAppBar } from './ui/ResponsiveAppBar';

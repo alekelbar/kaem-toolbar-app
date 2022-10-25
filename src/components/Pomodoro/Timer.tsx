@@ -35,14 +35,7 @@ export const Timer = () => {
     secondsLeftRef.current = nextSeconds;
   }
 
-
-  const initTimer = () => {
-    setsecondLeft((clockConfig?.work ?? 1) * 60);
-  }
-
   useEffect(() => {
-
-    initTimer();
 
     const interval = setInterval(() => {
 
@@ -59,7 +52,7 @@ export const Timer = () => {
     }, 10)
     return () => clearInterval(interval);
 
-  }, [clockConfig])
+  }, [])
 
   const onPause = () => {
     setPause(!pause);
