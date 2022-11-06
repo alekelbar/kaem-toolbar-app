@@ -1,8 +1,9 @@
 import React from "react";
 import { Typography } from "@mui/material";
 import { Layout } from "src/components";
+import { NextPage } from "next";
 
-const Matrix = () => {
+const Matrix: NextPage = () => {
   return (
     <Layout>
       <Typography

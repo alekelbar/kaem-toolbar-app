@@ -4,11 +4,12 @@ import {
   Grid,
   Input,
   InputLabel,
+  makeStyles,
   Stack,
   TextField,
   Typography,
 } from "@mui/material";
-import { Box, Container } from "@mui/system";
+import { Box } from "@mui/system";
 import { useFormik, FormikValues } from "formik";
 import { formVal, initialValues } from "./helpers/FormikConfig";
 
@@ -30,6 +31,7 @@ export const SubjectForm = () => {
           <Grid item xs={12} sm={6}>
             <TextField
               required
+              sx={{ "& .MuiInputBase-input": { color: "black" } }}
               name="title"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
@@ -48,6 +50,7 @@ export const SubjectForm = () => {
           <Grid item xs={12} sm={6}>
             <TextField
               required
+              sx={{ "& .MuiInputBase-input": { color: "black" } }}
               name="description"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
@@ -74,6 +77,7 @@ export const SubjectForm = () => {
               value={formik.values.startAt}
               id="startDate"
               required
+              sx={{ "& .MuiInputBase-input": { color: "black" } }}
               type="date"
             />
             {formik.touched.startAt && formik.errors.startAt ? (
@@ -94,6 +98,7 @@ export const SubjectForm = () => {
               value={formik.values.endAt}
               id="endAt"
               required
+              sx={{ "& .MuiInputBase-input": { color: "black" } }}
               type="date"
             />
             {formik.touched.endAt && formik.errors.endAt ? (

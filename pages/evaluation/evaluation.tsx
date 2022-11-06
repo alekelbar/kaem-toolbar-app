@@ -1,8 +1,9 @@
 import { Typography } from "@mui/material";
+import { NextPage } from "next";
 import React from "react";
 import { Layout } from "src/components";
 
-const Evaluation = () => {
+const Evaluation: NextPage = () => {
   return (
     <Layout>
       <Typography
