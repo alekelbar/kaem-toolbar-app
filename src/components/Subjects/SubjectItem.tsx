@@ -1,25 +1,35 @@
 import { Stack } from "@mui/system";
+import { subjectInterface } from "./models/subject";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
+import dayjs from "dayjs";
 import React from "react";
 import Typography from "@mui/material/Typography";
-import { subjectInterface } from "pages/subject/models/subject";
-import dayjs from "dayjs";
+import { Theme } from "@mui/material";
 
 export const SubjectItem = ({ data }: { data: subjectInterface }) => {
   return (
     <Stack m={3}>
       <Card sx={{ minWidth: 275, marginTop: 5 }}>
-        <CardContent>
-          <Typography variant="h5" color="text.secondary" gutterBottom>
+        <CardContent
+          sx={{
+            backgroundColor: (theme: Theme) => theme.palette.primary.light,
+            padding: (theme: Theme) => theme.spacing(3),
+          }}
+        >
+          <Typography variant="h5" color="text.primary" gutterBottom>
             {data.title}
           </Typography>
-          <Typography sx={{ fontSize: 14 }} component="div">
+          <Typography
+            color="text.primary"
+            sx={{ fontSize: 14 }}
+            component="div"
+          >
             {data.descr}
           </Typography>
-          <Typography variant="body2">
+          <Typography color="text.primary" variant="body2">
             Fecha inicial:
             {`" ${dayjs(data.startAt).format("DD/MM/YYYY")}"`}
             <br />

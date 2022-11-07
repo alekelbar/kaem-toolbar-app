@@ -22,7 +22,7 @@ const Subject = ({ data }: { data: subjectInterface[] }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const res = await axios.get("http://localhost:65000/subjects");
+  const res = await axios.get(`${process.env.API_URL}/subjects`);
   const data: subjectInterface[] = res.data;
 
   return {

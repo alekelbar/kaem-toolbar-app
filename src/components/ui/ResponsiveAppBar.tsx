@@ -92,11 +92,11 @@ function ResponsiveAppBar({ image }: ResponsiveAppBarProps) {
             component="a"
             href="/"
             sx={{
-              mr: 2,
+              mr: 4,
               display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
+              fontFamily: "Raleway",
+              fontWeight: 600,
+              letterSpacing: ".4rem",
               color: "primary",
               textDecoration: "none",
             }}
@@ -141,7 +141,12 @@ function ResponsiveAppBar({ image }: ResponsiveAppBarProps) {
                     handleActions(page);
                   }}
                 >
-                  <Typography textAlign="center">{page}</Typography>
+                  <Typography
+                    sx={{ fontSize: 14, fontWeight: "bold" }}
+                    textAlign="center"
+                  >
+                    {page}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -165,7 +170,13 @@ function ResponsiveAppBar({ image }: ResponsiveAppBarProps) {
           >
             KAEM
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Typography
+            sx={{
+              fontSize: 16,
+              flexGrow: 1,
+              display: { xs: "none", md: "flex" },
+            }}
+          >
             {pages.map((page) => (
               <Button
                 key={page}
@@ -178,13 +189,13 @@ function ResponsiveAppBar({ image }: ResponsiveAppBarProps) {
                 {page}
               </Button>
             ))}
-          </Box>
+          </Typography>
 
           <Box sx={{ flexGrow: 0 }}>
             {/* Avatar que se muestra en el navbar */}
-            <Tooltip title="Open settings">
+            <Tooltip title="Opciones de panel">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src={image ?? ""} />
+                <Avatar alt="Perfil" src={image ?? ""} />
               </IconButton>
             </Tooltip>
             <Menu
@@ -210,7 +221,12 @@ function ResponsiveAppBar({ image }: ResponsiveAppBarProps) {
                     handleActions(setting);
                   }}
                 >
-                  <Typography textAlign="center">{setting}</Typography>
+                  <Typography
+                    sx={{ fontSize: 14, fontWeight: "bold" }}
+                    textAlign="center"
+                  >
+                    {setting}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>

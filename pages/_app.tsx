@@ -7,7 +7,7 @@ import { CacheProvider, EmotionCache } from "@emotion/react";
 import { SessionProvider } from "next-auth/react";
 import { Session } from "next-auth";
 import createEmotionCache from "src/createEmotionCache";
-import { createTheme, Typography } from "@mui/material";
+import { createTheme } from "@mui/material";
 
 const theme = createTheme({
   palette: {
@@ -30,7 +30,7 @@ const theme = createTheme({
   typography: {
     allVariants: {
       color: "black",
-      fontFamily: "Raleway, Roboto",
+      fontFamily: "Montserrat, Raleway, Roboto",
     },
   },
 });
@@ -54,12 +54,6 @@ export default function MyApp(props: MyAppProps) {
     <SessionProvider session={session}>
       <CacheProvider value={emotionCache}>
         <Head>
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;700&display=swap"
-            rel="stylesheet"
-          />
           <meta name="viewport" content="initial-scale=1, width=device-width" />
         </Head>
         <ThemeProvider theme={createTheme(theme)}>

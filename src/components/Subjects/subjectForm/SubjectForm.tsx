@@ -4,18 +4,36 @@ import {
   Grid,
   Input,
   InputLabel,
-  makeStyles,
   Stack,
   TextField,
   Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
+import axios, { HttpStatusCode } from "axios";
 import { useFormik, FormikValues } from "formik";
 import { formVal, initialValues } from "./helpers/FormikConfig";
+import { useContext } from "react";
+import { UserSessionContext } from "../../../context/userSessionContext";
+import { useSession } from "next-auth/react";
 
 export const SubjectForm = () => {
-  const handleSubmit = (values: FormikValues) => {
-    console.log(values);
+  const userSession = useContext(UserSessionContext);
+  const userId = userSession?.user?.id ?? "";
+
+  const handleSubmit = async (values: FormikValues) => {
+    const { title, description, startAt, endAt } = values;
+
+    const responds = await axios.post(`${process.env.API_URL}/subjects`, {
+      user_id: userId,
+      title: title,
+      descr: description,
+      startAt: startAt,
+      endAt: endAt,
+    });
+
+    if (responds.status === HttpStatusCode?.Ok) {
+      console.log(responds);
+    }
   };
 
   const formik = useFormik({
