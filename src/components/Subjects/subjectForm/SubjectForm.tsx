@@ -12,28 +12,46 @@ import { Box } from "@mui/system";
 import axios, { HttpStatusCode } from "axios";
 import { useFormik, FormikValues } from "formik";
 import { formVal, initialValues } from "./helpers/FormikConfig";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { UserSessionContext } from "../../../context/userSessionContext";
-import { useSession } from "next-auth/react";
+import Swal from "sweetalert2";
+import { useRouter } from "next/router";
 
 export const SubjectForm = () => {
+  const router = useRouter();
   const userSession = useContext(UserSessionContext);
   const userId = userSession?.user?.id ?? "";
 
   const handleSubmit = async (values: FormikValues) => {
     const { title, description, startAt, endAt } = values;
 
-    const responds = await axios.post(`${process.env.API_URL}/subjects`, {
-      user_id: userId,
-      title: title,
-      descr: description,
-      startAt: startAt,
-      endAt: endAt,
-    });
+    Swal.fire({
+      title: "Crear una asignatura",
+      text: "¿Esta seguro?",
+      icon: "question",
+      cancelButtonText: "¡NO!",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, ¡Creala!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const respond = await axios.post(`${process.env.API_URL}/subjects`, {
+          user_id: userId,
+          title: title,
+          descr: description,
+          startAt: startAt,
+          endAt: endAt,
+        });
 
-    if (responds.status === HttpStatusCode?.Ok) {
-      console.log(responds);
-    }
+        if (respond.statusText !== "Created") {
+          Swal.fire("OK!", "Algo ha fallado! :c", "error");
+          return;
+        }
+        await Swal.fire("OK!", "Hemos creado la asignatura", "success");
+        router.push("/subject/subject");
+      }
+    });
   };
 
   const formik = useFormik({

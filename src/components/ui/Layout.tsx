@@ -29,6 +29,7 @@ const Layout = ({ children }: LayoutProps) => {
           height: "100%",
           backgroundColor: "white",
           margin: "0 auto",
+          position: "relative",
         }}
       >
         <ResponsiveAppBar

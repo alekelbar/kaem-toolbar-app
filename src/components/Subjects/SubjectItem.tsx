@@ -8,11 +8,51 @@ import dayjs from "dayjs";
 import React from "react";
 import Typography from "@mui/material/Typography";
 import { Theme } from "@mui/material";
+import Swal from "sweetalert2";
+import axios from "axios";
 
-export const SubjectItem = ({ data }: { data: subjectInterface }) => {
+export const SubjectItem = ({
+  data,
+  onDelete,
+}: {
+  data: subjectInterface;
+  onDelete: (id: string) => void;
+}) => {
+  const handleDelete = async () => {
+    const result = await Swal.fire({
+      title: "¿Estas seguro de querer eliminarlo?",
+      text: "No podemos deshacer el cambio, y borraras tambien todos su topicos asociados",
+      icon: "warning",
+      cancelButtonText: "¡No quiero!",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "¡Sí, adelante!",
+    });
+
+    if (!result.isConfirmed) return;
+
+    const respond = await axios.delete(
+      `${process.env.API_URL}/subjects/${data._id}`
+    );
+
+    if (respond.status !== 200) {
+      Swal.fire("Ups!", "Algo fallo, y no pudimos eliminarlo :c", "error");
+      return;
+    }
+
+    Swal.fire(
+      "Borrado!",
+      "No hay vuelta atras, la asignatura fue eliminada",
+      "success"
+    );
+
+    onDelete(data._id);
+  };
+
   return (
-    <Stack m={3}>
-      <Card sx={{ minWidth: 275, marginTop: 5 }}>
+    <Stack m={2}>
+      <Card sx={{ minWidth: 275, marginTop: 5, maxWidth: "md" }}>
         <CardContent
           sx={{
             backgroundColor: (theme: Theme) => theme.palette.primary.light,
@@ -41,7 +81,12 @@ export const SubjectItem = ({ data }: { data: subjectInterface }) => {
           <Button variant="contained" color="success" size="small">
             Editar
           </Button>
-          <Button variant="contained" color="warning" size="small">
+          <Button
+            onClick={handleDelete}
+            variant="contained"
+            color="warning"
+            size="small"
+          >
             Eliminar
           </Button>
         </CardActions>
