@@ -1,6 +1,7 @@
 import NextAuth from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
+import FacebookProvider from "next-auth/providers/facebook";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import clientPromise from "lib/mongodb";
 
@@ -14,6 +15,10 @@ const authOptions = NextAuth({
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENTID as string,
       clientSecret: process.env.GOOGLE_CLIENTSECRET as string,
+    }),
+    FacebookProvider({
+      clientId: process.env.FB_CLIENTID as string,
+      clientSecret: process.env.FB_CLIENTSECRET as string,
     }),
     // ...add more providers here
   ],

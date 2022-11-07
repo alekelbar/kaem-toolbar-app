@@ -40,6 +40,7 @@ const Login = () => {
           </Typography>
           <GitHubIcon />
           <GoogleIcon />
+          <FacebookIcon />
         </Button>
       </Stack>
     </Stack>
