@@ -3,10 +3,10 @@ import { GetServerSideProps } from "next";
 import axios from "axios";
 import { subjectInterface } from "../../src/components/Subjects/models/subject";
 import { useRouter } from "next/router";
-import { SubjectEditForm } from "src/components/Subjects/EditForm";
+import { EditSubjectForm } from "src/components/Subjects/EditForm";
 
 const id = ({ data }: { data: subjectInterface }) => {
-  return <SubjectEditForm data={data} />;
+  return <EditSubjectForm data={data} />;
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {

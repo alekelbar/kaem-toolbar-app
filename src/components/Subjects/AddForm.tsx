@@ -17,7 +17,7 @@ import { useRouter } from "next/router";
 import { UserSessionContext } from "src/context/userSessionContext";
 import dayjs from "dayjs";
 
-export const SubjectAddForm = () => {
+export const AddSubjectForm = () => {
   const router = useRouter();
   const userSession = useContext(UserSessionContext);
   const userId = userSession?.user?.id ?? "";

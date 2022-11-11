@@ -16,7 +16,7 @@ import Swal from "sweetalert2";
 import { subjectsEditValidation } from "./helpers/FormikConfig";
 import { subjectInterface } from "./models/subject";
 
-export const SubjectEditForm = ({ data }: { data: subjectInterface }) => {
+export const EditSubjectForm = ({ data }: { data: subjectInterface }) => {
   const router = useRouter();
 
   return (

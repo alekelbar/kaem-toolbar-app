@@ -1,9 +1,9 @@
 import React from "react";
 import { Layout } from "src/components";
-import { SubjectAddForm } from "src/components/Subjects";
+import { AddSubjectForm } from "src/components/Subjects";
 
 const AddSubject = () => {
-  return <SubjectAddForm />;
+  return <AddSubjectForm />;
 };
 
 export default AddSubject;

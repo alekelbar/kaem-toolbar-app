@@ -1,6 +1,6 @@
-import { Button, Paper, Typography } from "@mui/material";
+import { Button, Paper, Skeleton, Typography } from "@mui/material";
 import { GetServerSideProps } from "next";
-import { getSession, signIn } from "next-auth/react";
+import { getSession, signIn, useSession } from "next-auth/react";
 import { Stack } from "@mui/system";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import GitHubIcon from "@mui/icons-material/GitHub";
@@ -49,17 +49,15 @@ const Login = () => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getSession(context);
-  if (session)
+  if (!session)
     return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
+      props: {},
     };
 
   return {
-    props: {
-      session: null,
+    redirect: {
+      destination: "/",
+      permanent: false,
     },
   };
 };

@@ -1,15 +1,16 @@
 import * as React from "react";
-import Head from "next/head";
 import { AppProps } from "next/app";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { CacheProvider, EmotionCache } from "@emotion/react";
-import { SessionProvider } from "next-auth/react";
+import { SessionProvider, getSession } from "next-auth/react";
 import { Session } from "next-auth";
 import createEmotionCache from "src/createEmotionCache";
 import { createTheme } from "@mui/material";
 import { Layout } from "src/components";
 import { useRouter } from "next/router";
+import { GetServerSideProps } from "next";
+import { sessionModelInterface } from "../src/models/sessionModel";
 
 const theme = createTheme({
   palette: {
@@ -30,7 +31,6 @@ const theme = createTheme({
     },
   },
   typography: {
-    
     allVariants: {
       color: "black",
       fontFamily: "Montserrat, Raleway, Roboto",
@@ -43,7 +43,7 @@ const clientSideEmotionCache = createEmotionCache();
 
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
-  session: Session;
+  session: sessionModelInterface;
 }
 
 export default function MyApp(props: MyAppProps) {
@@ -74,3 +74,20 @@ export default function MyApp(props: MyAppProps) {
     </SessionProvider>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getSession(context);
+  if (!session)
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+
+  return {
+    props: {
+      session,
+    },
+  };
+};

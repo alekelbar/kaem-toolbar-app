@@ -74,7 +74,7 @@ function ResponsiveAppBar({ image }: ResponsiveAppBarProps) {
     switch (action) {
       case actions.Logout:
         signOut();
-        router.push("/login");
+        router.push("/");
         break;
     }
   };
@@ -189,6 +189,7 @@ function ResponsiveAppBar({ image }: ResponsiveAppBarProps) {
                   key={page}
                   size="large"
                   variant={pathname.includes(page) ? "contained" : "text"}
+                  sx={{ my: 1 }}
                 >
                   <Link
                     href={`${process.env.NEXT_PUBLIC_DEV_URL}/${page}`}
