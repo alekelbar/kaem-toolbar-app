@@ -22,32 +22,34 @@ const Layout = ({ children }: LayoutProps) => {
   }
 
   return (
-    <UserSessionContext.Provider value={session as sessionModelInterface}>
-      <Paper
-        sx={{
-          width: "100%",
-          height: "100%",
-          backgroundColor: "white",
-          margin: "0 auto",
-          position: "relative",
-        }}
-      >
-        <ResponsiveAppBar
-          image={session?.user?.image ?? "https://i.imgur.com/b9NyUGm.png"}
-        />
-        <Box
+    <main>
+      <UserSessionContext.Provider value={session as sessionModelInterface}>
+        <Paper
           sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "start",
             width: "100%",
             height: "100%",
+            backgroundColor: "white",
+            margin: "0 auto",
+            position: "relative",
           }}
         >
-          {children}
-        </Box>
-      </Paper>
-    </UserSessionContext.Provider>
+          <ResponsiveAppBar
+            image={session?.user?.image ?? "https://i.imgur.com/b9NyUGm.png"}
+          />
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "start",
+              width: "100%",
+              height: "100%",
+            }}
+          >
+            {children}
+          </Box>
+        </Paper>
+      </UserSessionContext.Provider>
+    </main>
   );
 };
 

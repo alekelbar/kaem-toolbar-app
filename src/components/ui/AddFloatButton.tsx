@@ -12,7 +12,7 @@ export const AddFloatButton = ({ onClick }: { onClick: () => void }) => {
         position: "fixed",
         bottom: { xs: 16 },
         right: 16,
-        top: { md: 100 },
+        top: { md: 110 },
       }}
     >
       <AddIcon fontSize={"large"} />

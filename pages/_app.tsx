@@ -8,6 +8,8 @@ import { SessionProvider } from "next-auth/react";
 import { Session } from "next-auth";
 import createEmotionCache from "src/createEmotionCache";
 import { createTheme } from "@mui/material";
+import { Layout } from "src/components";
+import { useRouter } from "next/router";
 
 const theme = createTheme({
   palette: {
@@ -28,6 +30,7 @@ const theme = createTheme({
     },
   },
   typography: {
+    
     allVariants: {
       color: "black",
       fontFamily: "Montserrat, Raleway, Roboto",
@@ -44,6 +47,10 @@ interface MyAppProps extends AppProps {
 }
 
 export default function MyApp(props: MyAppProps) {
+  const router = useRouter();
+
+  const loginPage = router.pathname.includes("login");
+
   const {
     session,
     Component,
@@ -53,12 +60,15 @@ export default function MyApp(props: MyAppProps) {
   return (
     <SessionProvider session={session}>
       <CacheProvider value={emotionCache}>
-        <Head>
-          <meta name="viewport" content="initial-scale=1, width=device-width" />
-        </Head>
         <ThemeProvider theme={createTheme(theme)}>
           <CssBaseline />
-          <Component {...pageProps} />
+          {loginPage ? (
+            <Component {...pageProps} />
+          ) : (
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          )}
         </ThemeProvider>
       </CacheProvider>
     </SessionProvider>

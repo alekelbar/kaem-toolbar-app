@@ -24,7 +24,7 @@ const Login = () => {
         maxWidth={"md"}
         height="40%"
         bgcolor="white"
-        margin="0 auto"
+        margin="50px auto"
         display={"flex"}
         justifyContent="center"
       >
@@ -35,7 +35,7 @@ const Login = () => {
           }}
           variant="contained"
         >
-          <Typography variant="overline">
+          <Typography variant="overline" color={"white"}>
             Ingresar con redes sociales
           </Typography>
           <GitHubIcon />
