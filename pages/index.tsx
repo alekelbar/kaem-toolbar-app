@@ -1,15 +1,12 @@
-import { Button } from '@mui/material'
-import { NextPage } from 'next'
-import Head from 'next/head'
-import { Layout } from '../src/components'
-import styles from '../styles/Home.module.css'
+import { Button } from "@mui/material";
+import { NextPage } from "next";
+import { Layout } from "../src/components";
+
+// TODO:
+// * make configurations file with static information like messages
 
 const Home: NextPage = () => {
-  return (
-    <Layout>
-      <Button>Hello World!</Button>
-    </Layout>
-  )
-}
+  return <Button>Hello World!</Button>;
+};
 
-export default Home
+export default Home;

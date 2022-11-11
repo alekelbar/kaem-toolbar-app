@@ -96,7 +96,6 @@ export const Timer = () => {
         <Image
           width={100}
           height={100}
-          style={{ width: "30%" }}
           src="https://i.imgur.com/b9NyUGm.png"
           alt="doge"
         />

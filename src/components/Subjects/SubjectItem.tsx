@@ -10,6 +10,7 @@ import Typography from "@mui/material/Typography";
 import { Theme } from "@mui/material";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 export const SubjectItem = ({
   data,
@@ -18,6 +19,12 @@ export const SubjectItem = ({
   data: subjectInterface;
   onDelete: (id: string) => void;
 }) => {
+  const router = useRouter();
+
+  const handleEdit = () => {
+    router.push(`${process.env.NEXT_PUBLIC_DEV_URL}/subject/${data._id}`);
+  };
+
   const handleDelete = async () => {
     const result = await Swal.fire({
       title: "¿Estas seguro de querer eliminarlo?",
@@ -29,11 +36,10 @@ export const SubjectItem = ({
       cancelButtonColor: "#d33",
       confirmButtonText: "¡Sí, adelante!",
     });
-
     if (!result.isConfirmed) return;
 
     const respond = await axios.delete(
-      `${process.env.API_URL}/subjects/${data._id}`
+      `${process.env.NEXT_PUBLIC_API_URL}/subjects/${data._id}`
     );
 
     if (respond.status !== 200) {
@@ -52,7 +58,7 @@ export const SubjectItem = ({
 
   return (
     <Stack m={2}>
-      <Card sx={{ minWidth: 275, marginTop: 5, maxWidth: "md" }}>
+      <Card sx={{ minWidth: 275, marginTop: 2, maxWidth: "md" }}>
         <CardContent
           sx={{
             backgroundColor: (theme: Theme) => theme.palette.primary.light,
@@ -78,7 +84,12 @@ export const SubjectItem = ({
           </Typography>
         </CardContent>
         <CardActions>
-          <Button variant="contained" color="success" size="small">
+          <Button
+            onClick={handleEdit}
+            variant="contained"
+            color="success"
+            size="small"
+          >
             Editar
           </Button>
           <Button

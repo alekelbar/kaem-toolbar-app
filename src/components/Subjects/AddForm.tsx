@@ -8,16 +8,16 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { Box } from "@mui/system";
-import axios, { HttpStatusCode } from "axios";
+import axios from "axios";
 import { useFormik, FormikValues } from "formik";
-import { formVal, initialValues } from "./helpers/FormikConfig";
-import { useContext, useState } from "react";
-import { UserSessionContext } from "../../../context/userSessionContext";
+import { subjectsAddValidation, initialValues } from "./helpers/FormikConfig";
+import { useContext } from "react";
 import Swal from "sweetalert2";
 import { useRouter } from "next/router";
+import { UserSessionContext } from "src/context/userSessionContext";
+import dayjs from "dayjs";
 
-export const SubjectForm = () => {
+export const SubjectAddForm = () => {
   const router = useRouter();
   const userSession = useContext(UserSessionContext);
   const userId = userSession?.user?.id ?? "";
@@ -36,20 +36,23 @@ export const SubjectForm = () => {
       confirmButtonText: "Si, ¡Creala!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const respond = await axios.post(`${process.env.API_URL}/subjects`, {
-          user_id: userId,
-          title: title,
-          descr: description,
-          startAt: startAt,
-          endAt: endAt,
-        });
+        const respond = await axios.post(
+          `${process.env.NEXT_PUBLIC_API_URL}/subjects`,
+          {
+            user_id: userId,
+            title: title,
+            descr: description,
+            startAt: dayjs(startAt),
+            endAt: dayjs(endAt),
+          }
+        );
 
         if (respond.statusText !== "Created") {
           Swal.fire("OK!", "Algo ha fallado! :c", "error");
           return;
         }
         await Swal.fire("OK!", "Hemos creado la asignatura", "success");
-        router.push("/subject/subject");
+        router.push("/subject");
       }
     });
   };
@@ -57,12 +60,12 @@ export const SubjectForm = () => {
   const formik = useFormik({
     initialValues,
     onSubmit: handleSubmit,
-    validationSchema: formVal,
+    validationSchema: subjectsAddValidation,
   });
 
   return (
     <Stack m={5}>
-      <Box component={"form"} onSubmit={formik.handleSubmit}>
+      <form onSubmit={formik.handleSubmit}>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6}>
             <TextField
@@ -73,7 +76,7 @@ export const SubjectForm = () => {
               onBlur={formik.handleBlur}
               value={formik.values.title}
               label="Titulo"
-              variant="filled"
+              variant="outlined"
               helperText="¿Cual es el nombre de su materia?"
               fullWidth
             />
@@ -92,7 +95,7 @@ export const SubjectForm = () => {
               onBlur={formik.handleBlur}
               value={formik.values.description}
               label="Descripción"
-              variant="filled"
+              variant="outlined"
               helperText="Brinde una lígera descripción"
               fullWidth
             />
@@ -147,7 +150,7 @@ export const SubjectForm = () => {
             Registrar
           </Button>
         </Grid>
-      </Box>
+      </form>
     </Stack>
   );
 };

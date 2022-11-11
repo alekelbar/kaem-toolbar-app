@@ -1,6 +1,6 @@
 export * from './PauseButton';
 export * from './PlayButton';
-export * from './PomodoroClock';
+export * from './Pomodoro';
 export * from './Settings';
 export * from './SettingsButton';
 export * from './Timer';

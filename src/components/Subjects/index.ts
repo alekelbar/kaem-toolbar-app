@@ -1,3 +1,5 @@
-export * from './subjectForm/SubjectForm';
+export * from './AddForm';
 export * from './SubjectItem';
-export * from './subjectForm/helpers/FormikConfig';
+export * from './helpers/FormikConfig';
+export * from './models/subject';
+export * from './Subjects';

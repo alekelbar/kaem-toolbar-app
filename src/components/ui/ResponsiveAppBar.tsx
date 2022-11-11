@@ -4,6 +4,7 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
+import { Link as MUILink } from "@mui/material";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
@@ -14,15 +15,28 @@ import MenuItem from "@mui/material/MenuItem";
 import EventIcon from "@mui/icons-material/Event";
 import { useRouter } from "next/router";
 import { signOut } from "next-auth/react";
+import Link from "next/link";
 
-const pages = ["Asignaturas", "Pomodoro", "Prioridad", "Evaluaciones"];
+type pagesLabels = {
+  evaluation: string;
+  pomodoro: string;
+  matrix: string;
+  subject: string;
+  topic: string;
+};
+
+const pagesNames: pagesLabels = {
+  evaluation: "Módulo de evaluaciones",
+  pomodoro: "Módulo de pomodoro",
+  matrix: "Módulo de prioridad",
+  subject: "Módulo de asignaturas",
+  topic: "Módulo de pendientes",
+};
+
+const pages = ["evaluation", "pomodoro", "matrix", "subject", "topic"];
 const settings = ["Salir"];
 const actions = {
   Logout: "Salir",
-  suject: "Asignaturas",
-  pomodoro: "Pomodoro",
-  matrix: "Prioridad",
-  evaluaciones: "Evaluaciones",
 };
 
 type ResponsiveAppBarProps = {
@@ -38,6 +52,7 @@ function ResponsiveAppBar({ image }: ResponsiveAppBarProps) {
   );
 
   const router = useRouter();
+  const pathname = router.pathname;
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -61,23 +76,6 @@ function ResponsiveAppBar({ image }: ResponsiveAppBarProps) {
         signOut();
         router.push("/login");
         break;
-      case actions.evaluaciones:
-        router.push("/evaluation/evaluation");
-        break;
-
-      case actions.matrix:
-        router.push("/matrix/matrix");
-        break;
-
-      case actions.pomodoro:
-        router.push("/pomodoro/pomodoro");
-        break;
-
-      case actions.suject:
-        router.push("/subject/subject");
-        break;
-      default:
-        break;
     }
   };
 
@@ -97,7 +95,7 @@ function ResponsiveAppBar({ image }: ResponsiveAppBarProps) {
               fontFamily: "Raleway",
               fontWeight: 600,
               letterSpacing: ".4rem",
-              color: "primary",
+              color: "white",
               textDecoration: "none",
             }}
           >
@@ -134,21 +132,27 @@ function ResponsiveAppBar({ image }: ResponsiveAppBarProps) {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem
-                  key={page}
-                  onClick={() => {
-                    handleActions(page);
-                  }}
-                >
-                  <Typography
-                    sx={{ fontSize: 14, fontWeight: "bold" }}
-                    textAlign="center"
-                  >
-                    {page}
-                  </Typography>
-                </MenuItem>
-              ))}
+              {pages.map((page) => {
+                const key = page as keyof pagesLabels;
+
+                return (
+                  <MenuItem key={page}>
+                    <Typography
+                      sx={{ fontSize: 14, fontWeight: "bold" }}
+                      textAlign="center"
+                    >
+                      <Link
+                        href={`${process.env.NEXT_PUBLIC_DEV_URL}/${page}`}
+                        passHref
+                      >
+                        <MUILink sx={{ textDecoration: "none" }}>
+                          {pagesNames[key]}
+                        </MUILink>
+                      </Link>
+                    </Typography>
+                  </MenuItem>
+                );
+              })}
             </Menu>
           </Box>
           <EventIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
@@ -164,7 +168,7 @@ function ResponsiveAppBar({ image }: ResponsiveAppBarProps) {
               fontFamily: "monospace",
               fontWeight: 700,
               letterSpacing: ".3rem",
-              color: "inherit",
+              color: "white",
               textDecoration: "none",
             }}
           >
@@ -177,25 +181,40 @@ function ResponsiveAppBar({ image }: ResponsiveAppBarProps) {
               display: { xs: "none", md: "flex" },
             }}
           >
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={() => {
-                  handleActions(page);
-                  console.log("actions!");
-                }}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {page}
-              </Button>
-            ))}
+            {pages.map((page) => {
+              const key = page as keyof pagesLabels;
+
+              return (
+                <Button
+                  key={page}
+                  size="large"
+                  variant={pathname.includes(page) ? "contained" : "text"}
+                >
+                  <Link
+                    href={`${process.env.NEXT_PUBLIC_DEV_URL}/${page}`}
+                    passHref
+                  >
+                    <MUILink
+                      sx={{
+                        textDecoration: "none",
+                        color: "white",
+                        fontFamily: "Raleway",
+                        fontWeight: "semibold",
+                      }}
+                    >
+                      {pagesNames[key]}
+                    </MUILink>
+                  </Link>
+                </Button>
+              );
+            })}
           </Typography>
 
           <Box sx={{ flexGrow: 0 }}>
             {/* Avatar que se muestra en el navbar */}
             <Tooltip title="Opciones de panel">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Perfil" src={image ?? ""} />
+                <Avatar sx={{ ml: { md: 4 } }} alt="Perfil" src={image ?? ""} />
               </IconButton>
             </Tooltip>
             <Menu
