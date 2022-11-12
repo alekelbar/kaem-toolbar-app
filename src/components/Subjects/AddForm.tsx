@@ -42,8 +42,8 @@ export const AddSubjectForm = () => {
             user_id: userId,
             title: title,
             descr: description,
-            startAt: dayjs(startAt),
-            endAt: dayjs(endAt),
+            startAt: dayjs(startAt).format("YYYY-DD-MM"),
+            endAt: dayjs(endAt).format("YYYY-DD-MM"),
           }
         );
 
@@ -79,6 +79,7 @@ export const AddSubjectForm = () => {
               variant="outlined"
               helperText="¿Cual es el nombre de su materia?"
               fullWidth
+              autoComplete="on"
             />
 
             {formik.touched.title && formik.errors.title ? (
@@ -144,11 +145,11 @@ export const AddSubjectForm = () => {
               <Alert severity="error">{formik.errors.endAt}</Alert>
             ) : null}
           </Grid>
-        </Grid>
-        <Grid item xs={12} mt={3}>
-          <Button type="submit" variant="contained" color={"success"}>
-            Registrar
-          </Button>
+          <Grid item xs={12} mt={3}>
+            <Button type="submit" variant="contained" color={"success"}>
+              Registrar
+            </Button>
+          </Grid>
         </Grid>
       </form>
     </Stack>

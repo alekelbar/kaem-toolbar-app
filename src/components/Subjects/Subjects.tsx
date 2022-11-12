@@ -1,5 +1,4 @@
 // import { GetServerSideProps, NextPage } from "next";
-import { Layout } from "src/components";
 import { SubjectItem } from "src/components/Subjects";
 import React, { useState } from "react";
 import { Alert, Grid } from "@mui/material";

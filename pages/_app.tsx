@@ -4,13 +4,15 @@ import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { CacheProvider, EmotionCache } from "@emotion/react";
 import { SessionProvider, getSession } from "next-auth/react";
-import { Session } from "next-auth";
 import createEmotionCache from "src/createEmotionCache";
 import { createTheme } from "@mui/material";
 import { Layout } from "src/components";
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
 import { sessionModelInterface } from "../src/models/sessionModel";
+import { config } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+config.autoAddCss = false;
 
 const theme = createTheme({
   palette: {

@@ -1,8 +1,7 @@
-import React from "react";
-import Matrix from "src/components/matrix/Matrix";
+import * as React from "react";
 
 const index = () => {
-  return <Matrix />;
+  return <div></div>;
 };
 
 export default index;

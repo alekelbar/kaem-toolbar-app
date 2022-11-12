@@ -1,9 +1,4 @@
 
-interface tagsInterface {
-    important: string;
-    urgent: string;
-}
-
 
 export interface topicInterface {
     _id: string
@@ -11,5 +6,7 @@ export interface topicInterface {
     name: string,
     descr: string,
     deadline: string,
-    tags: tagsInterface
+    complete: boolean,
+    important: string,
+    urgent: string,
 }

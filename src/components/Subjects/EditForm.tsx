@@ -31,8 +31,8 @@ export const EditSubjectForm = ({ data }: { data: subjectInterface }) => {
               user_id: user_id,
               title: title,
               descr: descr,
-              startAt: dayjs(startAt),
-              endAt: dayjs(endAt),
+              startAt: dayjs(startAt).format("YYYY-MM-DD"),
+              endAt: dayjs(endAt).format("YYYY-MM-DD"),
             }
           );
 

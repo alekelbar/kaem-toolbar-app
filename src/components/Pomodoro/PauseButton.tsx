@@ -1,18 +1,22 @@
 import React from "react";
-import PauseIcon from "@mui/icons-material/Pause";
 import { Button, Stack } from "@mui/material";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faPause } from "@fortawesome/free-solid-svg-icons";
+
+library.add(faPause);
 
 export const PauseButton = (props: { pause: () => void }) => {
   return (
     <Stack width="100%">
       <Button
+        fullWidth
         color="secondary"
         onClick={props.pause}
         variant="contained"
         size="large"
-        sx={{ margin: "10px", borderRadius: "20px" }}
       >
-        <PauseIcon sx={{ fontSize: "2.1em" }} />
+        <FontAwesomeIcon icon={faPause} size={"3x"} />
       </Button>
     </Stack>
   );

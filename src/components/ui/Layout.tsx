@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Paper, Skeleton, Stack } from "@mui/material";
+import { Box, Skeleton } from "@mui/material";
 import ResponsiveAppBar from "./ResponsiveAppBar";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
@@ -22,34 +22,20 @@ const Layout = ({ children }: LayoutProps) => {
   }
 
   return (
-    <main>
-      <UserSessionContext.Provider value={session as sessionModelInterface}>
-        <Paper
-          sx={{
-            width: "100%",
-            height: "100%",
-            backgroundColor: "white",
-            margin: "0 auto",
-            position: "relative",
-          }}
-        >
-          <ResponsiveAppBar
-            image={session?.user?.image ?? "https://i.imgur.com/b9NyUGm.png"}
-          />
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "start",
-              width: "100%",
-              height: "100%",
-            }}
-          >
-            {children}
-          </Box>
-        </Paper>
-      </UserSessionContext.Provider>
-    </main>
+    <UserSessionContext.Provider value={session as sessionModelInterface}>
+      <ResponsiveAppBar
+        image={session?.user?.image ?? "https://i.imgur.com/b9NyUGm.png"}
+      />
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <main style={{ width: "100%" }}>{children}</main>
+      </Box>
+    </UserSessionContext.Provider>
   );
 };
 

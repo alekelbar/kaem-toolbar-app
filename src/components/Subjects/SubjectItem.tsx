@@ -11,6 +11,9 @@ import { Theme } from "@mui/material";
 import Swal from "sweetalert2";
 import axios from "axios";
 import { useRouter } from "next/router";
+import "dayjs/locale/es";
+
+dayjs.locale("es");
 
 export const SubjectItem = ({
   data,
@@ -65,22 +68,26 @@ export const SubjectItem = ({
             padding: (theme: Theme) => theme.spacing(3),
           }}
         >
-          <Typography variant="h5" color="text.primary" gutterBottom>
+          <Typography variant="h4" color="text.primary" gutterBottom>
             {data.title}
+          </Typography>
+          <Typography color="text.primary" variant="body2">
+            {`${dayjs(data.startAt, "YYYY-MM-DD")
+              .format("dddd D, MMMM, YYYY")
+              .toUpperCase()} `}
+            -
+            {` ${dayjs(data.endAt, "YYYY-MM-DD")
+              .format("dddd D, MMMM, YYYY")
+              .toUpperCase()}`}
           </Typography>
           <Typography
             color="text.primary"
-            sx={{ fontSize: 14 }}
+            sx={{ fontSize: 14, fontWeight: "bold" }}
             component="div"
           >
-            {data.descr}
-          </Typography>
-          <Typography color="text.primary" variant="body2">
-            Fecha inicial:
-            {`" ${dayjs(data.startAt).format("DD/MM/YYYY")}"`}
             <br />
-            Fecha Final:
-            {`" ${dayjs(data.endAt).format("DD/MM/YYYY")}"`}
+            {data.descr}
+            <br />
           </Typography>
         </CardContent>
         <CardActions>

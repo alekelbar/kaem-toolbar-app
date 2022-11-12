@@ -3,8 +3,18 @@ import { topicInterface } from "./models/topic";
 import { Grid, Alert } from "@mui/material";
 import { AddFloatButton } from "../ui/AddFloatButton";
 import { TopicItem } from "./TopicItem";
+import { useRouter } from "next/router";
+import { useState } from "react";
 
-export const Topics = ({ data: topics }: { data: topicInterface[] }) => {
+export const Topics = ({ data }: { data: topicInterface[] }) => {
+  const router = useRouter();
+
+  const [topics, setTopics] = useState(data);
+
+  const onDelete = async (id: string) => {
+    setTopics(topics.filter((t) => t._id != id));
+  };
+
   return (
     <>
       <Grid
@@ -18,7 +28,7 @@ export const Topics = ({ data: topics }: { data: topicInterface[] }) => {
         {topics.length > 0 ? (
           topics.map((topic) => (
             <Grid key={topic._id} item sm={"auto"}>
-              <TopicItem onDelete={() => {}} data={topic} key={topic._id} />
+              <TopicItem onDelete={onDelete} data={topic} key={topic._id} />
             </Grid>
           ))
         ) : (
@@ -27,7 +37,7 @@ export const Topics = ({ data: topics }: { data: topicInterface[] }) => {
       </Grid>
       <AddFloatButton
         onClick={() => {
-          console.log("recuerda redirigir aca!");
+          router.push("/topic/addTopic");
         }}
       />
     </>

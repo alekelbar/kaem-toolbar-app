@@ -60,7 +60,7 @@ export const Settings = () => {
   };
 
   return (
-    <Stack sx={{ margin: "0 auto", width: "100%", color: "white" }}>
+    <Stack sx={{ margin: "0 auto", width: "70%", color: "white" }}>
       <Typography gutterBottom>
         {clockContext?.work} Minutos de estudio
       </Typography>

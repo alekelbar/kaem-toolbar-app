@@ -14,11 +14,15 @@ export const Pomodoro = () => {
 
   return (
     <ClockProvider>
-      <Grid container>
-        <Stack margin="50px auto">
-          {settings ? <Settings /> : <Timer />}
+      <Grid container sx={{ height: "100%" }}>
+        <Grid item xs={12}>
+          <Stack margin="50px auto">
+            {settings ? <Settings /> : <Timer />}
+          </Stack>
+        </Grid>
+        <Grid item xs={12}>
           <SettingsButton handleSettings={OnSetting} />
-        </Stack>
+        </Grid>
       </Grid>
     </ClockProvider>
   );

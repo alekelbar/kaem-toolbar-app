@@ -1,4 +1,11 @@
-import { Box, ButtonGroup, Theme, Typography } from "@mui/material";
+import {
+  Box,
+  ButtonGroup,
+  Theme,
+  Typography,
+  Stack,
+  Grid,
+} from "@mui/material";
 import { useContext, useEffect, useRef, useState } from "react";
 import {
   buildStyles,
@@ -10,10 +17,9 @@ import { PauseButton } from "./PauseButton";
 import { PlayButton } from "./PlayButton";
 import Image from "next/image";
 import { useTheme } from "@emotion/react";
+import Container from "@mui/material/Container";
 
 export const Timer = () => {
-  const theme = useTheme();
-
   const clockConfig = useContext(ClockContext);
   const [mode, setMode] = useState("rest");
   const [secondLeft, setsecondLeft] = useState(0);
@@ -51,7 +57,7 @@ export const Timer = () => {
       }
 
       tick();
-    }, 10);
+    }, 100);
     return () => clearInterval(interval);
   }, []);
 
@@ -71,41 +77,17 @@ export const Timer = () => {
   if (minutes < 10) minutes = "0" + minutes;
 
   return (
-    <>
+    <Grid container display={"flex"} flexDirection={"column"}>
       <Typography
         textAlign={"center"}
-        variant="h5"
-        padding="10px"
-        color={"primary"}
+        variant="h1"
+        padding={4}
+        sx={{ width: { sm: "100%" } }}
+        color={mode === "work" ? "secondary.main" : "success.main"}
       >
         {minutes}:{seconds}
       </Typography>
-      <CircularProgressbarWithChildren
-        value={percentaje}
-        // text={`${percentaje}%`}
-        styles={buildStyles({
-          textColor: "#fff",
-          pathColor:
-            mode === "work"
-              ? (theme as Theme).palette.primary.main
-              : (theme as Theme).palette.secondary.main,
-          textSize: "90%",
-          trailColor: "#d6d6d6",
-        })}
-      >
-        <Image
-          width={100}
-          height={100}
-          src="https://i.imgur.com/b9NyUGm.png"
-          alt="doge"
-        />
-        {/* {} */}
-        <Box sx={{ fontSize: "2em", color: "white" }}>
-          <Typography variant="h6">{percentaje}%</Typography>
-        </Box>
-      </CircularProgressbarWithChildren>
-
-      <ButtonGroup sx={{ display: "flex", justifyContent: "space-evenly" }}>
+      <ButtonGroup sx={{ width: "50%", m: "0 auto" }}>
         {/* buttons */}
         {pause ? (
           <PlayButton
@@ -123,6 +105,6 @@ export const Timer = () => {
           />
         )}
       </ButtonGroup>
-    </>
+    </Grid>
   );
 };

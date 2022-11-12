@@ -1,14 +1,23 @@
-import { Button, Stack } from '@mui/material'
-import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
-import React from 'react'
+import { Button, Stack } from "@mui/material";
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faPlay } from "@fortawesome/free-solid-svg-icons";
+
+library.add(faPlay);
 
 export const PlayButton = (props: { pause: () => void }) => {
   return (
-    <Stack width='100%'>
-      <Button color='success' onClick={props.pause} variant='contained' size='large' sx={{ margin: '10px', borderRadius: '20px' }}>
-        <PlayCircleOutlineIcon sx={{ fontSize: '2.1em' }} />
+    <Stack width="100%">
+      <Button
+        fullWidth
+        color="success"
+        onClick={props.pause}
+        variant="contained"
+        size="large"
+      >
+        <FontAwesomeIcon icon={faPlay} size={"3x"} />
       </Button>
     </Stack>
-  )
-}
-
+  );
+};

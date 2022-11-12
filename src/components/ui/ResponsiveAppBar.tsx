@@ -90,16 +90,16 @@ function ResponsiveAppBar({ image }: ResponsiveAppBarProps) {
             component="a"
             href="/"
             sx={{
-              mr: 4,
+              mr: 5,
               display: { xs: "none", md: "flex" },
               fontFamily: "Raleway",
-              fontWeight: 600,
-              letterSpacing: ".4rem",
+              fontWeight: 700,
+              letterSpacing: ".2rem",
               color: "white",
               textDecoration: "none",
             }}
           >
-            KAEM
+            UNA
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -137,15 +137,18 @@ function ResponsiveAppBar({ image }: ResponsiveAppBarProps) {
 
                 return (
                   <MenuItem key={page}>
-                    <Typography
-                      sx={{ fontSize: 14, fontWeight: "bold" }}
-                      textAlign="center"
-                    >
+                    <Typography textAlign="center">
                       <Link
                         href={`${process.env.NEXT_PUBLIC_DEV_URL}/${page}`}
                         passHref
                       >
-                        <MUILink sx={{ textDecoration: "none" }}>
+                        <MUILink
+                          sx={{
+                            textDecoration: "none",
+                            fontSize: 14,
+                            fontWeight: "bold",
+                          }}
+                        >
                           {pagesNames[key]}
                         </MUILink>
                       </Link>
@@ -167,18 +170,21 @@ function ResponsiveAppBar({ image }: ResponsiveAppBarProps) {
               flexGrow: 1,
               fontFamily: "monospace",
               fontWeight: 700,
-              letterSpacing: ".3rem",
+              letterSpacing: ".2rem",
               color: "white",
               textDecoration: "none",
             }}
           >
-            KAEM
+            UNA
           </Typography>
           <Typography
             sx={{
-              fontSize: 16,
+              fontSize: 10,
+              width: { sm: "60%" },
+              fontWeight: "bold",
               flexGrow: 1,
               display: { xs: "none", md: "flex" },
+              justifyContent: "space-around",
             }}
           >
             {pages.map((page) => {
@@ -187,9 +193,9 @@ function ResponsiveAppBar({ image }: ResponsiveAppBarProps) {
               return (
                 <Button
                   key={page}
-                  size="large"
+                  size="small"
                   variant={pathname.includes(page) ? "contained" : "text"}
-                  sx={{ my: 1 }}
+                  sx={{ py: 1 }}
                 >
                   <Link
                     href={`${process.env.NEXT_PUBLIC_DEV_URL}/${page}`}
@@ -200,7 +206,8 @@ function ResponsiveAppBar({ image }: ResponsiveAppBarProps) {
                         textDecoration: "none",
                         color: "white",
                         fontFamily: "Raleway",
-                        fontWeight: "semibold",
+                        fontSize: 14,
+                        fontWeight: "bold",
                       }}
                     >
                       {pagesNames[key]}

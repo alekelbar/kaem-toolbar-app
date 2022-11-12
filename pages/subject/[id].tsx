@@ -11,7 +11,7 @@ const id = ({ data }: { data: subjectInterface }) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const res = await axios.get(
-    `${process.env.NEXT_PUBLIC_API_URL}/subjects/${context.query.id}`
+    `${process.env.NEXT_PUBLIC_API_URL}/subjects/one/${context.query.id}`
   );
 
   const data: subjectInterface = res.data;
