@@ -4,6 +4,7 @@ import { Timer } from "./Timer";
 import { Settings } from "./Settings";
 import { SettingsButton } from "./SettingsButton";
 import { ClockProvider } from "./context/ClockProvider";
+import Box from "@mui/material/Box";
 
 export const Pomodoro = () => {
   const [settings, setSettings] = useState<Boolean>(false);
@@ -14,16 +15,14 @@ export const Pomodoro = () => {
 
   return (
     <ClockProvider>
-      <Grid container sx={{ height: "100%" }}>
-        <Grid item xs={12}>
-          <Stack margin="50px auto">
-            {settings ? <Settings /> : <Timer />}
-          </Stack>
-        </Grid>
-        <Grid item xs={12}>
-          <SettingsButton handleSettings={OnSetting} />
-        </Grid>
-      </Grid>
+      <Stack
+        margin={"0 auto"}
+        width={"100%"}
+        className={"animate__animated animate__lightSpeedInRight"}
+      >
+        <Stack margin="10px auto">{settings ? <Settings /> : <Timer />}</Stack>
+        <SettingsButton handleSettings={OnSetting} />
+      </Stack>
     </ClockProvider>
   );
 };

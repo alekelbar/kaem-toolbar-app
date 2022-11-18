@@ -60,15 +60,20 @@ export const SubjectItem = ({
   };
 
   return (
-    <Stack m={2}>
-      <Card sx={{ minWidth: 275, marginTop: 2, maxWidth: "md" }}>
+    <Stack m={2} className={"animate__animated animate__fadeInLeft"}>
+      <Card sx={{ marginTop: 2, maxWidth: "md" }}>
         <CardContent
           sx={{
             backgroundColor: (theme: Theme) => theme.palette.primary.light,
-            padding: (theme: Theme) => theme.spacing(3),
+            // padding: (theme: Theme) => theme.spacing(3),
           }}
         >
-          <Typography variant="h4" color="text.primary" gutterBottom>
+          <Typography
+            variant="h5"
+            color="text.primary"
+            gutterBottom
+            fontWeight={"bold"}
+          >
             {data.title}
           </Typography>
           <Typography color="text.primary" variant="body2">
@@ -82,7 +87,7 @@ export const SubjectItem = ({
           </Typography>
           <Typography
             color="text.primary"
-            sx={{ fontSize: 14, fontWeight: "bold" }}
+            sx={{ fontSize: 14 }}
             component="div"
           >
             <br />

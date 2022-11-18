@@ -1,29 +1,17 @@
-import {
-  Box,
-  ButtonGroup,
-  Theme,
-  Typography,
-  Stack,
-  Grid,
-} from "@mui/material";
+import { ButtonGroup, Grid, Typography, Button } from "@mui/material";
+import { Stack } from "@mui/system";
 import { useContext, useEffect, useRef, useState } from "react";
-import {
-  buildStyles,
-  CircularProgressbarWithChildren,
-} from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { ClockContext } from "./context/ClockContext";
 import { PauseButton } from "./PauseButton";
 import { PlayButton } from "./PlayButton";
-import Image from "next/image";
-import { useTheme } from "@emotion/react";
 import Container from "@mui/material/Container";
 
 export const Timer = () => {
   const clockConfig = useContext(ClockContext);
   const [mode, setMode] = useState("rest");
   const [secondLeft, setsecondLeft] = useState(0);
-  const [pause, setPause] = useState(false);
+  const [pause, setPause] = useState(true);
 
   const secondsLeftRef = useRef(secondLeft);
   const modeRef = useRef(mode);
@@ -65,11 +53,6 @@ export const Timer = () => {
     setPause(!pause);
   };
 
-  const totalSeconds =
-    mode == "work"
-      ? (clockConfig?.work ?? 1) * 60
-      : (clockConfig?.rest ?? 1) * 60;
-  const percentaje = Math.floor((secondLeft / totalSeconds) * 100);
   let minutes: string | number = Math.floor(secondLeft / 60);
   let seconds: string | number = secondLeft % 60;
 
@@ -77,34 +60,36 @@ export const Timer = () => {
   if (minutes < 10) minutes = "0" + minutes;
 
   return (
-    <Grid container display={"flex"} flexDirection={"column"}>
+    <Container>
       <Typography
         textAlign={"center"}
-        variant="h1"
+        variant="h4"
         padding={4}
-        sx={{ width: { sm: "100%" } }}
         color={mode === "work" ? "secondary.main" : "success.main"}
+        width={{ md: "500px", xs: "200px" }}
       >
-        {minutes}:{seconds}
+        {`${minutes}:${seconds}`}
       </Typography>
-      <ButtonGroup sx={{ width: "50%", m: "0 auto" }}>
-        {/* buttons */}
-        {pause ? (
-          <PlayButton
-            pause={() => {
-              onPause();
-              pauseRef.current = false;
-            }}
-          />
-        ) : (
-          <PauseButton
-            pause={() => {
-              onPause();
-              pauseRef.current = true;
-            }}
-          />
-        )}
-      </ButtonGroup>
-    </Grid>
+      <Stack sx={{ width: "80%", margin: "0 auto" }}>
+        <ButtonGroup>
+          {/* buttons */}
+          {pause ? (
+            <PlayButton
+              pause={() => {
+                onPause();
+                pauseRef.current = false;
+              }}
+            />
+          ) : (
+            <PauseButton
+              pause={() => {
+                onPause();
+                pauseRef.current = true;
+              }}
+            />
+          )}
+        </ButtonGroup>
+      </Stack>
+    </Container>
   );
 };

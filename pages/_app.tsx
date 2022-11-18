@@ -15,6 +15,7 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 config.autoAddCss = false;
 
 const theme = createTheme({
+  custom: { appbarWidth: "100%" },
   palette: {
     mode: "light",
     primary: {

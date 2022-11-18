@@ -1,10 +1,11 @@
 import React from "react";
-import { Box, Skeleton } from "@mui/material";
+import { Box, Skeleton, Stack } from "@mui/material";
 import ResponsiveAppBar from "./ResponsiveAppBar";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { UserSessionContext } from "src/context/userSessionContext";
 import { sessionModelInterface } from "../../models/sessionModel";
+import { Container } from "@mui/system";
 
 type LayoutProps = {
   children: Array<JSX.Element> | JSX.Element;
@@ -26,15 +27,7 @@ const Layout = ({ children }: LayoutProps) => {
       <ResponsiveAppBar
         image={session?.user?.image ?? "https://i.imgur.com/b9NyUGm.png"}
       />
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <main style={{ width: "100%" }}>{children}</main>
-      </Box>
+      <Container>{children}</Container>
     </UserSessionContext.Provider>
   );
 };

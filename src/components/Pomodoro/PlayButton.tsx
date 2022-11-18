@@ -10,13 +10,12 @@ export const PlayButton = (props: { pause: () => void }) => {
   return (
     <Stack width="100%">
       <Button
-        fullWidth
         color="success"
         onClick={props.pause}
         variant="contained"
         size="large"
       >
-        <FontAwesomeIcon icon={faPlay} size={"3x"} />
+        <FontAwesomeIcon icon={faPlay} size={"lg"} />
       </Button>
     </Stack>
   );

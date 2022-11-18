@@ -17,23 +17,32 @@ import { useRouter } from "next/router";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
 
-type pagesLabels = {
+interface pagesLabels {
   evaluation: string;
   pomodoro: string;
   matrix: string;
   subject: string;
   topic: string;
-};
+  performance: string;
+}
 
 const pagesNames: pagesLabels = {
-  evaluation: "Módulo de evaluaciones",
-  pomodoro: "Módulo de pomodoro",
-  matrix: "Módulo de prioridad",
-  subject: "Módulo de asignaturas",
-  topic: "Módulo de pendientes",
+  evaluation: "Evaluaciones",
+  pomodoro: "Pomodoro",
+  matrix: "Prioridad",
+  subject: "Asignaturas",
+  topic: "Pendientes",
+  performance: "rendimiento",
 };
 
-const pages = ["evaluation", "pomodoro", "matrix", "subject", "topic"];
+const pages = [
+  "evaluation",
+  "pomodoro",
+  "matrix",
+  "subject",
+  "topic",
+  "performance",
+];
 const settings = ["Salir"];
 const actions = {
   Logout: "Salir",
@@ -74,14 +83,19 @@ function ResponsiveAppBar({ image }: ResponsiveAppBarProps) {
     switch (action) {
       case actions.Logout:
         signOut();
+        handleCloseNavMenu();
         router.push("/");
         break;
     }
   };
 
   return (
-    <AppBar position="sticky" color="secondary">
-      <Container maxWidth="xl">
+    <AppBar
+      position="sticky"
+      color="secondary"
+      sx={{ maxWidth: "lg", margin: "0 auto" }}
+    >
+      <Container sx={{ width: "100%" }}>
         <Toolbar disableGutters>
           <EventIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Typography

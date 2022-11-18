@@ -11,14 +11,14 @@ export const SettingsButton = (props: { handleSettings: () => void }) => {
   const { handleSettings } = props;
 
   return (
-    <Stack width={"50%"} m={"auto"}>
+    <Stack width={"50%"} maxWidth={"300px"} m={"0 auto"}>
       <Button
         color="primary"
         variant="contained"
         onClick={() => handleSettings()}
         size="large"
       >
-        <FontAwesomeIcon icon={faGear} size={"3x"} />
+        <FontAwesomeIcon icon={faGear} size={"lg"} />
       </Button>
     </Stack>
   );

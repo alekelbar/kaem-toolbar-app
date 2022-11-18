@@ -30,6 +30,7 @@
     "react-circular-progressbar": "^2.1.0",
     "react-dom": "18.2.0",
     "react-move": "^6.5.0",
+    "recharts": "^2.1.16",
     "sweetalert2": "^11.6.6",
     "yup": "^0.32.11"
   },

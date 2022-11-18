@@ -11,7 +11,7 @@ export const AddFloatButton = ({ onClick }: { onClick: () => void }) => {
       sx={{
         position: "fixed",
         bottom: { xs: 16 },
-        right: 16,
+        right: 15,
         top: { md: 110 },
       }}
     >

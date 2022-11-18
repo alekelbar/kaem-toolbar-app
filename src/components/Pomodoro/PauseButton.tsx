@@ -16,7 +16,7 @@ export const PauseButton = (props: { pause: () => void }) => {
         variant="contained"
         size="large"
       >
-        <FontAwesomeIcon icon={faPause} size={"3x"} />
+        <FontAwesomeIcon icon={faPause} size={"lg"} />
       </Button>
     </Stack>
   );

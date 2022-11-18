@@ -1,6 +1,14 @@
 import React from "react";
 import { topicInterface } from "./models/topic";
-import { Stack, Typography, Button, Theme, Skeleton } from "@mui/material";
+import {
+  Stack,
+  Typography,
+  Button,
+  Theme,
+  Skeleton,
+  Grid,
+  Alert,
+} from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
@@ -10,6 +18,8 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
 
 export const TopicItem = ({
   onDelete,
@@ -80,8 +90,8 @@ export const TopicItem = ({
     onDelete(data._id);
   };
 
-  let hours = dayjs(data.deadline).diff(dayjs(), "hours");
-  const days = Math.round(hours / 24);
+  let hours = Math.abs(dayjs(data.deadline).diff(dayjs(), "hours"));
+  const days = Math.abs(Math.round(hours / 24));
   hours %= 24;
 
   const restTime = {
@@ -89,25 +99,44 @@ export const TopicItem = ({
     hours,
   };
   return (
-    <Stack m={2}>
-      <Card sx={{ minWidth: 275, marginTop: 2, maxWidth: "md" }}>
+    <Grid
+      item
+      maxWidth={"90%"}
+      margin={"0 auto"}
+      className={"animate__animated animate__fadeInLeft"}
+    >
+      <Card sx={{ marginTop: 2, maxWidth: "md" }}>
         <CardContent
           sx={{
             backgroundColor: (theme: Theme) => theme.palette.primary.light,
-            padding: (theme: Theme) => theme.spacing(3),
+            // padding: (theme: Theme) => theme.spacing(3),
           }}
         >
-          <Typography variant="h4" color="text.primary" gutterBottom>
+          <Typography
+            maxWidth={"100%"}
+            variant="h5"
+            color="text.primary"
+            gutterBottom
+            fontWeight={"bold"}
+          >
             {data.name}
           </Typography>
           <Typography
             color="text.primary"
-            sx={{ fontSize: 14, fontWeight: "bold" }}
-            component="div"
+            sx={{ fontSize: 12, fontWeight: "bold" }}
+            component="p"
+            margin={"0 auto"}
+            overflow={"auto"}
+            width={"90%"}
           >
             {data.descr}
           </Typography>
-          <Typography color="text.primary" variant="body2">
+          <Typography
+            // fontWeight={"bold"}
+            color="text.primary"
+            variant="body2"
+            component={"p"}
+          >
             <br />
             {`${dayjs(data.deadline, "YYYY-MM-DD")
               .format("dddd D, MMMM, YYYY")
@@ -118,10 +147,12 @@ export const TopicItem = ({
             entrega
             <br />
           </Typography>
-          <Typography color="text.primary" variant="body2">
+          <Typography color="text.primary" variant="body2" component={"p"}>
             <br />
             Asignatura: {subject?.title} <br />
-            Status: {data.complete ? "Entregado" : "Sin entregar"}
+            <Alert sx={{ mt: 2, width: "80%" }} variant="standard" color="info">
+              Status: {data.complete ? "Entregado" : "Sin entregar"}
+            </Alert>
             <br />
           </Typography>
         </CardContent>
@@ -164,6 +195,6 @@ export const TopicItem = ({
           )}
         </CardActions>
       </Card>
-    </Stack>
+    </Grid>
   );
 };

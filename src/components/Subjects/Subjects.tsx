@@ -18,11 +18,11 @@ export const Subjects = ({ data }: { data: subjectInterface[] }) => {
     <>
       <Grid
         container
-        spacing={1}
+        // spacing={1}
         direction="row"
         alignItems="center"
         justifyContent="center"
-        style={{ minHeight: "100vh" }}
+        // style={{ minHeight: "100vh" }}
       >
         {subjects.length > 0 ? (
           subjects.map((suject) => (

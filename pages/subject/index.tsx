@@ -25,6 +25,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       (session as sessionModelInterface).user.id
     }`
   );
+
   const data: subjectInterface[] = res.data;
 
   return {
