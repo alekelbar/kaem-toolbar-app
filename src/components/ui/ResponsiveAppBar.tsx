@@ -23,7 +23,7 @@ interface pagesLabels {
   matrix: string;
   subject: string;
   topic: string;
-  performance: string;
+  stadistics: string;
 }
 
 const pagesNames: pagesLabels = {
@@ -32,7 +32,7 @@ const pagesNames: pagesLabels = {
   matrix: "Prioridad",
   subject: "Asignaturas",
   topic: "Pendientes",
-  performance: "rendimiento",
+  stadistics: "Rendimiento",
 };
 
 const pages = [
@@ -41,7 +41,7 @@ const pages = [
   "matrix",
   "subject",
   "topic",
-  "performance",
+  "stadistics",
 ];
 const settings = ["Salir"];
 const actions = {

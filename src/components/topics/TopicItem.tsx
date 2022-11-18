@@ -1,7 +1,6 @@
 import React from "react";
 import { topicInterface } from "./models/topic";
 import {
-  Stack,
   Typography,
   Button,
   Theme,
@@ -98,6 +97,7 @@ export const TopicItem = ({
     days,
     hours,
   };
+
   return (
     <Grid
       item
@@ -124,7 +124,7 @@ export const TopicItem = ({
           <Typography
             color="text.primary"
             sx={{ fontSize: 12, fontWeight: "bold" }}
-            component="p"
+            component="div"
             margin={"0 auto"}
             overflow={"auto"}
             width={"90%"}
@@ -135,7 +135,7 @@ export const TopicItem = ({
             // fontWeight={"bold"}
             color="text.primary"
             variant="body2"
-            component={"p"}
+            component={"div"}
           >
             <br />
             {`${dayjs(data.deadline, "YYYY-MM-DD")
@@ -147,10 +147,14 @@ export const TopicItem = ({
             entrega
             <br />
           </Typography>
-          <Typography color="text.primary" variant="body2" component={"p"}>
+          <Typography color="text.primary" variant="body2" component={"div"}>
             <br />
             Asignatura: {subject?.title} <br />
-            <Alert sx={{ mt: 2, width: "80%" }} variant="standard" color="info">
+            <Alert
+              sx={{ mt: 2, width: "80%" }}
+              variant="filled"
+              color={!data.complete ? "info" : "success"}
+            >
               Status: {data.complete ? "Entregado" : "Sin entregar"}
             </Alert>
             <br />
